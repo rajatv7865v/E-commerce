@@ -7,8 +7,6 @@ import ProductList from './Pages/ProductList';
 import Register from './Pages/Register';
  import {Routes,Route} from 'react-router-dom'
 import Greet from './Pages/Greet';
-import ProductsData from './components/ProductsData';
-import ProductData from './components/ProductData';
 function App() {
   return (
     <Routes >

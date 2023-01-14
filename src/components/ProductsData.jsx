@@ -1,9 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Announcement from './Announcement'
-import Footer from './Footer'
-import Navbar from './Navbar'
-import NewsLetter from './NewsLetter'
+
 import ProductData from './ProductData'
 import {data} from '../data'
 

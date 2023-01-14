@@ -78,7 +78,7 @@ const Footer = () => {
         <Desc>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste facilis praesentium labore similique architecto?</Desc>
         <SocialContainer>
             <SocialIcon >
-                <a href="https://www.instagram.com/mr__rajjo/" target='_blank' style={{color:'black'}}><Instagram/></a>
+                <a href="https://www.instagram.com/mr__rajjo/" rel="noreferrer" target='_blank' style={{color:'black'}}><Instagram/></a>
             </SocialIcon>
             <SocialIcon >
                 <LinkedIn/>
