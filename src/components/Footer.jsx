@@ -53,8 +53,6 @@ flex-wrap: wrap;
 const ListItem=styled.li`
 width: 50%;
 margin-bottom: 10px;
-
-
 `
 const Right=styled.div`
 flex: 1;
@@ -80,7 +78,7 @@ const Footer = () => {
         <Desc>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste facilis praesentium labore similique architecto?</Desc>
         <SocialContainer>
             <SocialIcon >
-                <Instagram/>
+                <a href="https://www.instagram.com/mr__rajjo/" target='_blank' style={{color:'black'}}><Instagram/></a>
             </SocialIcon>
             <SocialIcon >
                 <LinkedIn/>

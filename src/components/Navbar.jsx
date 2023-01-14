@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import {Mobile} from '../responsive'
+import { NavLink } from 'react-router-dom';
 
 const Container=styled.div`
     height: 65px;
@@ -46,9 +47,13 @@ text-align: center;
 
 `
 const Logo=styled.h1`
-font-weight: 700;
+font-weight: 900;
+text-decoration: none;
+cursor: pointer;
 ${Mobile({fontSize:'24px'})}
-
+&:hover{
+  color:green;
+}
 `
 const Right=styled.div`
 flex: 1;
@@ -58,12 +63,20 @@ justify-content: flex-end;
 ${Mobile({flex:2,justifyContent:'center'})}
 
 `
-const MenuItem=styled.div`
+const MenuItem=styled(NavLink)`
 font-size: 14px;
+font-weight: 600;
 cursor: pointer;
 margin-left: 25px;
 ${Mobile({fontSize:'12px',marginLeft:'10px'})}
-
+text-decoration: none;
+color: black;
+&:hover{
+  color: green;
+}
+&.active{
+  color: red;
+}
 `
 const Navbar = () => {
   return (
@@ -72,15 +85,17 @@ const Navbar = () => {
         <Left>
           <Language>EN</Language>
           <SearchContainer>
-            <Input/>
+            <Input placeholder='Search Product'/>
             <Search style={{color:'grey'}}/>
           </SearchContainer>
         </Left>
-        <Center><Logo>Rajat</Logo></Center>
+        <Center>
+        <NavLink to='/' style={{textDecoration:'none'}}><Logo>ℂ𝕃𝔸𝕊𝕊𝕀𝕊 𝕊𝕋𝕆ℝ𝔼</Logo></NavLink>
+        </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
-          <MenuItem>
+          <MenuItem to='/register'>REGISTER</MenuItem>
+          <MenuItem to='/login'>SIGN IN</MenuItem>
+          <MenuItem to='/cart'>
           <Badge badgeContent={1} color="primary">
       <ShoppingCartOutlinedIcon/>
     </Badge>

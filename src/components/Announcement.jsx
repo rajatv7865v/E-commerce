@@ -14,7 +14,7 @@ font-weight: 600;
 const Announcement = () => {
   return (
     <Container>
-      Super DEal! go Order now..
+      Super DEal! Go Order now..
     </Container>
   )
 }

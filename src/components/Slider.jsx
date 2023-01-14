@@ -1,5 +1,6 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@mui/icons-material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { sliderItems } from "../data";
 import { Mobile } from "../responsive";
@@ -69,9 +70,14 @@ const Button = styled.button`
   font-size: 20px;
   background-color: transparent;
   cursor: pointer;
+  &:hover{
+    background-color: teal;
+    box-shadow: 2px 4px 6px grey;
+  }
 `;
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
+  const navigate=useNavigate();
   const clickHandler = (dir) => {
    if(dir==='left'){
     setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
@@ -95,7 +101,7 @@ const Slider = () => {
               <InfoContainer>
                 <Title>{item.title}</Title>
                 <Desc>{item.desc}</Desc>
-                <Button>SHOP NOW</Button>
+                <Button onClick={()=>navigate('/productList')}>SHOP NOW</Button>
               </InfoContainer>
             </Slide>
           );
