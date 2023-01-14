@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Mobile } from '../responsive'
 
@@ -40,12 +41,13 @@ color: gray;
 font-weight: 600;
 `
 const CategoryItem = ({item}) => {
+  const navigate=useNavigate()
   return (
     <Container>
       <Image src={item.img}/>
       <Info>
         <Title>{item.title}</Title>
-        <Button>SHOP NOW</Button>
+        <Button onClick={()=>navigate('/productList')}>SHOP NOW</Button>
       </Info>
     </Container>
   )
