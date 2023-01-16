@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -57,7 +57,7 @@ const ProductList = () => {
             onChange={(e) => {
               setFilter(
                 product.filter(
-                  (item) => item.cat === (e.target.value == "White" ? "W" : "")
+                  (item) => item.cat === (e.target.value === "White" ? "W" : "")
                 )
               );
             }}
@@ -73,7 +73,7 @@ const ProductList = () => {
               setFilter(
                 product.filter(
                   (item) =>
-                    item.gender === (e.target.value == "Male" ? "M" : "F")
+                    item.gender === (e.target.value === "Male" ? "M" : "F")
                 )
               );
             }}

@@ -1,5 +1,5 @@
 import { Add, Remove } from '@mui/icons-material'
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Announcement from '../components/Announcement'
 import Footer from '../components/Footer'
@@ -117,7 +117,7 @@ const Product = () => {
     const{modalItem,cartItem,setCartItem,price,setPrice}=productContext;
     const addToCart=(e)=>{
         const prdct=cartItem.find((item)=>{
-           return item.name==modalItem.name
+           return item.name===modalItem.name
 
         })
         if(!prdct){
