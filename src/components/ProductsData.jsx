@@ -1,34 +1,41 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
-import ProductData from './ProductData'
-import {data} from '../data'
+import ProductData from "./ProductData";
+import { useContext } from "react";
+import appContext from "../Context/appContext";
 
-const Container=styled.div`
-
-`
-const Wrapper=styled.div`
-display: flex;
-flex-wrap: wrap;
-flex: 2;
-justify-content: center;
-grid-template-columns: repeat(4,1fr);
-margin: 20px 20px;
-padding: 20px 10px;
-padding-bottom: 10%;
-`
+const Container = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 2;
+  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 20px 20px;
+  padding: 20px 10px;
+  padding-bottom: 10%;
+`;
 const ProductsData = () => {
+  const productContext = useContext(appContext);
+  const { product,  filter } = productContext;
+  console.log("product", product);
+
   return (
     <Container>
       <Wrapper>
-       {
-        data.map((item,id)=>(
-          <ProductData item={item} key={id}/>
-        ))
-       }
+        {filter.length > 0
+          ? filter.map((item, id) => {
+              console.log("filter", filter);
+              return <ProductData item={item} key={id} />;
+            })
+          : product.map((item, id) => {
+              console.log("product", product);
+              return <ProductData item={item} key={id} />;
+            })}
       </Wrapper>
     </Container>
-  )
-}
+  );
+};
 
-export default ProductsData
+export default ProductsData;

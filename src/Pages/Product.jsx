@@ -1,11 +1,13 @@
 import { Add, Remove } from '@mui/icons-material'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Announcement from '../components/Announcement'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import NewsLetter from '../components/NewsLetter'
 import { Mobile } from '../responsive'
+import { useContext } from 'react'
+import appContext from '../Context/appContext'
 
 const Container=styled.div`
 
@@ -111,18 +113,33 @@ font-weight: 600;
 }
 `
 const Product = () => {
+    const productContext=useContext(appContext);
+    const{modalItem,cartItem,setCartItem,price,setPrice}=productContext;
+    const addToCart=(e)=>{
+        const prdct=cartItem.find((item)=>{
+           return item.name==modalItem.name
+
+        })
+        if(!prdct){
+            setPrice(Number(price)+Number(modalItem.finalPrice))
+            setCartItem([...cartItem,modalItem]);
+        }
+    }
+
+    console.log("price",price)
+
   return (
     <Container>
       <Navbar/>
       <Announcement/>
       <Wrapper>
         <ImgContainer>
-            <Image src='https://i.ibb.co/S6qMxwr/jean.jpg'/>
+            <Image src={modalItem.otherImages[0]}/>
         </ImgContainer>
         <InfoContainer>
-            <Title>Denim Jumpsuit</Title>
-            <Desc>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus at eos earum vero vel quibusdam?</Desc>
-            <Price>$ 20</Price>
+            <Title>{modalItem.name}</Title>
+            <Desc>{modalItem.description}</Desc>
+            <Price>{modalItem.finalPrice}</Price>
             <FilterContainer>
                 <Filter>
                     <FilterTitle>Color:</FilterTitle>
@@ -133,12 +150,12 @@ const Product = () => {
                 </Filter>
                 <Filter>
                     <FilterTitle>Size:</FilterTitle>
-                    <FilterSize>
-                        <FilterSizeOption>XS</FilterSizeOption>
-                        <FilterSizeOption>S</FilterSizeOption>
-                        <FilterSizeOption>M</FilterSizeOption>
-                        <FilterSizeOption>L</FilterSizeOption>
-                        <FilterSizeOption>XL</FilterSizeOption>
+                    <FilterSize >
+                        <FilterSizeOption value='XS'>XS</FilterSizeOption>
+                        <FilterSizeOption value='S'>S</FilterSizeOption>
+                        <FilterSizeOption value='M'>M</FilterSizeOption>
+                        <FilterSizeOption value='L'>L</FilterSizeOption>
+                        <FilterSizeOption value='XL'>XL</FilterSizeOption>
                     </FilterSize>
                 </Filter>
             </FilterContainer>
@@ -148,7 +165,7 @@ const Product = () => {
                     <Amount>1</Amount>
                     <Add/>
                 </AmountContainer>
-                <Button>ADD TO CART</Button>
+                <Button onClick={addToCart}>ADD TO CART</Button>
             </AddContainer>
         </InfoContainer>
       </Wrapper>
