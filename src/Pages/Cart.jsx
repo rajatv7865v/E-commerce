@@ -151,7 +151,6 @@ const Button = styled.button`
 const Cart = () => {
   const productContext = useContext(appContext);
   const { cartItem,price } = productContext;
-  console.log("cart me", cartItem.length);
   return (
     <Container>
       <Navbar />

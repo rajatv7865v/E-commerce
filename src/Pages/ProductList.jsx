@@ -38,11 +38,19 @@ const ProductList = () => {
   const { product, setFilter } = productContext;
 
   const sorting = (e) => {
-    setFilter(
-      (e.target.value === "asc"
-        ? product.sort((a, b) => a.name- b.name)
-        : product.sort((a, b) => b.name - a.name))
-    );
+    console.log(e)
+    if (e === "asc") {
+      let data = product.sort((a, b) => {
+        return b.finalPrice - a.finalPrice;
+      });
+      setFilter(data);
+    }
+    if (e === "dec") {
+      let data = product.sort((a, b) => {
+        return a.finalPrice - b.finalPrice;
+      });
+      setFilter(data);
+    }
   };
 
   return (
@@ -87,7 +95,7 @@ const ProductList = () => {
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
-          <Select onChange={sorting}>
+          <Select onChange={(e) => sorting(e.target.value)}>
             <Option disabled selected>
               Newest
             </Option>

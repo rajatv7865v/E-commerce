@@ -19,18 +19,15 @@ const Wrapper = styled.div`
 const ProductsData = () => {
   const productContext = useContext(appContext);
   const { product,  filter } = productContext;
-  console.log("product", product);
 
   return (
     <Container>
       <Wrapper>
         {filter.length > 0
           ? filter.map((item, id) => {
-              console.log("filter", filter);
               return <ProductData item={item} key={id} />;
             })
           : product.map((item, id) => {
-              console.log("product", product);
               return <ProductData item={item} key={id} />;
             })}
       </Wrapper>

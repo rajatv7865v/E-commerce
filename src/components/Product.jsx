@@ -4,7 +4,9 @@ import {
   ShoppingCartOutlined,
 } from "@mui/icons-material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+
 
 const Info = styled.div`
   width: 100%;
@@ -65,13 +67,18 @@ const Icon = styled.div`
   }
 `;
 const Product = ({ item }) => {
+
+const navigate=useNavigate();
+  const clickHandler=(e)=>{
+  navigate('/productList')
+  }
   return (
-    <Container>
+    <Container >
       <Circle />
       <Image src={item.img} />
       <Info>
-        <Icon>
-          <ShoppingCartOutlined />
+        <Icon >
+          <ShoppingCartOutlined  onClick={clickHandler}/>
         </Icon>
         <Icon>
           <SearchOutlined />

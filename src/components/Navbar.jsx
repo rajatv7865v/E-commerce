@@ -1,5 +1,5 @@
 import { Search } from "@mui/icons-material";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Badge from "@mui/material/Badge";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -10,14 +10,14 @@ import appContext from "../Context/appContext";
 
 const Container = styled.div`
   height: 65px;
-  ${Mobile({ height: "50px" })}
+  ${Mobile({ height: "60px" })}
 `;
 const Wrapper = styled.div`
   padding: 0px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${Mobile({ padding: "10px 0px" })}
+  ${Mobile({ padding: "5px 5px",marginLeft:'1px' })}
 `;
 const Left = styled.div`
   flex: 1;
@@ -35,6 +35,7 @@ const SearchContainer = styled.div`
   align-items: center;
   margin-left: 25px;
   padding: 5px;
+
 `;
 const Input = styled.input`
   border: none;
@@ -43,12 +44,15 @@ const Input = styled.input`
 const Center = styled.div`
   flex: 1;
   text-align: center;
+  ${Mobile({ marginLeft: "2px" })}
+
+
 `;
 const Logo = styled.h1`
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  ${Mobile({ fontSize: "24px" })}
+  ${Mobile({ fontSize: "13px" ,width:'100%',})}
   &:hover {
     color: green;
   }
@@ -77,14 +81,19 @@ const MenuItem = styled(NavLink)`
 `;
 const Navbar = () => {
   const productContext = useContext(appContext);
-  const { cartItem } = productContext;
+  const { cartItem, product, setFilter } = productContext;
+  const [searchvalue, setSearchValue] = useState("");
+  const inputHandler = (e) => {
+    setSearchValue(e.target.value.toUpperCase());
+    setFilter(product.filter((item) => item.name.includes(searchvalue)));
+  };
   return (
     <Container>
       <Wrapper>
         <Left>
           <Language>EN</Language>
           <SearchContainer>
-            <Input placeholder="Search Product" />
+            <Input placeholder="Search Product" onChange={inputHandler} />
             <Search style={{ color: "grey" }} />
           </SearchContainer>
         </Left>
