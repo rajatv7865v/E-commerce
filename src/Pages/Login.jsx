@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { Mobile } from "../responsive";
+
+
+
 
 const Container = styled.div`
   width: 100vw;
@@ -61,15 +65,22 @@ const Link = styled(NavLink)`
 `;
 
 const Login = () => {
+  const [user,setUser]=useState();
+  const [pass,setPass]=useState();
+  console.log("user",user)
+  console.log("pass",pass)
+  const submitHandle=()=>{
+    console.log('clicked')
+  }
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
-        <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
+        <Form >
+          <Input type='text' placeholder="username" onChange={(e)=>setUser(e.target.value)} />
+          <Input type='password' placeholder="password" onChange={(e)=>setPass(e.target.value)}/>
           <NavLink to='/greet/:1'>
-          <Button >LOGIN</Button>
+          <Button onSubmit={submitHandle} >LOGIN</Button>
           </NavLink>
           <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
           <Link to='/register'>CREATE A NEW ACCOUNT</Link>

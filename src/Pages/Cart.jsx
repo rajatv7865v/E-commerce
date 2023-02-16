@@ -104,11 +104,7 @@ const ProductAmountContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-const ProductAmount = styled.div`
-  font-size: 24px;
-  margin: 5px;
-  ${Mobile({ margin: "5px 15px" })}
-`;
+
 
 const ProductPrice = styled.div`
   font-size: 30px;
@@ -150,7 +146,9 @@ const Button = styled.button`
 
 const Cart = () => {
   const productContext = useContext(appContext);
-  const { cartItem,price } = productContext;
+  const { cartItem,price,count,setCount,setPrice } = productContext;
+  // console.log("count is",count);
+  setPrice()
   return (
     <Container>
       <Navbar />
@@ -168,6 +166,7 @@ const Cart = () => {
         <Bottom>
           <Info>
             {cartItem.map((item, id) => {
+              setPrice(item.finalPrice*count)
               return (
                 <Product>
                   <ProductDetail>
@@ -187,11 +186,11 @@ const Cart = () => {
                   </ProductDetail>
                   <PriceDetail>
                     <ProductAmountContainer>
-                      <Add />
-                      <ProductAmount>2</ProductAmount>
-                      <Remove />
+                       <Add onClick={()=>setCount(count+1)}/>
+                       <span>{count}</span>
+                       <Remove onClick={()=>setCount(count>2 ? count-1 :1)}/>
                     </ProductAmountContainer>
-                    <ProductPrice>Rs.{item.finalPrice}</ProductPrice>
+                    <ProductPrice>Rs.{item.finalPrice*count}</ProductPrice>
                   </PriceDetail>
                 </Product>
               );

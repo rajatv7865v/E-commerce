@@ -36,18 +36,21 @@ const Option = styled.option``;
 const ProductList = () => {
   const productContext = useContext(appContext);
   const { product, setFilter } = productContext;
-
+  
   const sorting = (e) => {
-    console.log(e)
+    let copyData=[];
+    product.map((item)=>copyData.push(item));
+    // console.log(copyData)
+
     if (e === "asc") {
-      let data = product.sort((a, b) => {
+      let data = copyData.sort((a, b) => {
         return a.finalPrice - b.finalPrice;
       });
       setFilter(data);
     }
     if (e === "dec") {
     
-      let data = product.sort((a, b) => {
+      let data = copyData.sort((a, b) => {
         return b.finalPrice - a.finalPrice;
       });
       setFilter(data);

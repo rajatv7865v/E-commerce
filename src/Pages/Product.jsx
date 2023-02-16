@@ -1,5 +1,5 @@
 import { Add, Remove } from '@mui/icons-material'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Announcement from '../components/Announcement'
 import Footer from '../components/Footer'
@@ -114,19 +114,19 @@ font-weight: 600;
 `
 const Product = () => {
     const productContext=useContext(appContext);
-    const{modalItem,cartItem,setCartItem,price,setPrice}=productContext;
+    const{modalItem,cartItem,setCartItem,price,setPrice,count,setCount}=productContext;
     const addToCart=(e)=>{
         const prdct=cartItem.find((item)=>{
            return item.name===modalItem.name
 
         })
         if(!prdct){
-            setPrice(Number(price)+Number(modalItem.finalPrice))
+            setPrice((Number(price)+(Number(modalItem.finalPrice)))*count)
             setCartItem([...cartItem,modalItem]);
         }
     }
 
-    console.log("price",price)
+    // console.log("price",price)
 
   return (
     <Container>
@@ -161,9 +161,9 @@ const Product = () => {
             </FilterContainer>
             <AddContainer>
                 <AmountContainer>
-                    <Remove/>
-                    <Amount>1</Amount>
-                    <Add/>
+                    <Remove onClick={()=>setCount(count>1?count-1:count)}/>
+                    <Amount>{count}</Amount>
+                    <Add onClick={()=>setCount(count+1)}/>
                 </AmountContainer>
                 <Button onClick={addToCart}>ADD TO CART</Button>
             </AddContainer>

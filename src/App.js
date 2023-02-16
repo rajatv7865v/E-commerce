@@ -17,6 +17,7 @@ function App() {
   const [filter,setFilter]=useState([]);
   const [cartItem,setCartItem]=useState([]);
   const [price,setPrice]=useState(0);
+  const [count,setCount]=useState(0);
   return (
     <productContext.Provider value={{
       product:product,
@@ -29,6 +30,8 @@ function App() {
       setCartItem:setCartItem,
       price:price,
       setPrice:setPrice,
+      count:count,
+      setCount:setCount,
     }}>
       <Routes>
         <Route path="/" element={<Home />} />
